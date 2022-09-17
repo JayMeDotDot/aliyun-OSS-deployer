@@ -26,6 +26,7 @@ inputs:
     default: 'false'
   cname:
     description: '是否支持上传自定义域名'
+    default: 'false'
   is-request-pay:
     description: 'Bucket是否开启请求者付费模式'
     default: 'false'
