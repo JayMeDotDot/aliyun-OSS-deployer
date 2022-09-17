@@ -1,13 +1,40 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'delpoy aliyun oss'
+description: 'delpoy aliyun oss'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  access-key-id:  # id of input
+    description: '通过阿里云控制台创建的AccessKey ID'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: ''
+  access-key-secret:
+    description: '通过阿里云控制台创建的AccessKey Secret'
+    required: true
+    default: ''
+  sts-token:
+    description: '使用临时授权方式'
+  bucket:
+    description: '通过控制台或PutBucket创建的Bucket'
+  endpoint:
+    description: 'OSS访问域名'
+    required: true
+    default: ''
+  region:
+    description: 'Bucket所在的区域'
+    required: true
+    default: 'oss-cn-hangzhou'
+  internal:
+    description: '是否使用阿里云内网访问'
+    default: 'false'
+  cname:
+    description: '是否支持上传自定义域名'
+  is-request-pay:
+    description: 'Bucket是否开启请求者付费模式'
+    default: 'false'
+  secure:
+    description: '是否使用HTTPS'
+    default: 'false'
+  timeout:
+    description: '超时时间'
+    default: '60000'
 runs:
   using: 'node16'
   main: 'dist/index.js'
