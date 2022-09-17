@@ -1,5 +1,6 @@
 const core = require('@actions/core')
-const github = require('@actions/github')
+const OSS = require('ali-oss')
+const path = require('path')
 
 try {
   const accessKeyId = core.getInput('access-key-id')
@@ -14,17 +15,32 @@ try {
   const secure = core.getBooleanInput('secure')
   const timeout = core.getInput('timeout')
 
-  console.log(accessKeyId)
-  console.log(accessKeySecret)
-  console.log(stsToken)
-  console.log(bucket)
-  console.log(endpoint)
-  console.log(region)
-  console.log(internal)
-  console.log(cname)
-  console.log(isRequestPay)
-  console.log(secure)
-  console.log(timeout)
+  const client = new OSS({
+    accessKeyId,
+    accessKeySecret,
+    stsToken,
+    bucket,
+    endpoint,
+    region,
+    internal,
+    cname,
+    isRequestPay,
+    secure,
+    timeout,
+  })
+
+  async function put() {
+    try {
+      const result = await client.put(
+        'dist/.',
+      )
+      console.log(result)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  put()
 
 } catch (err) {
   core.setFailed(err.message)

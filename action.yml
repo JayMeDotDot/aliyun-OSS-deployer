@@ -1,14 +1,12 @@
 name: 'delpoy aliyun oss'
 description: 'delpoy aliyun oss'
 inputs:
-  access-key-id:  # id of input
+  access-key-id:
     description: '通过阿里云控制台创建的AccessKey ID'
     required: true
-    default: ''
   access-key-secret:
     description: '通过阿里云控制台创建的AccessKey Secret'
     required: true
-    default: ''
   sts-token:
     description: '使用临时授权方式'
   bucket:
@@ -16,7 +14,6 @@ inputs:
   endpoint:
     description: 'OSS访问域名'
     required: true
-    default: ''
   region:
     description: 'Bucket所在的区域'
     required: true
