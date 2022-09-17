@@ -16,8 +16,6 @@ inputs:
     required: true
   region:
     description: 'Bucket所在的区域'
-    required: true
-    default: 'oss-cn-hangzhou'
   internal:
     description: '是否使用阿里云内网访问'
     default: 'false'

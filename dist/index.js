@@ -81866,7 +81866,7 @@ try {
       // const result = await client.put(
       //   'dist/.',
       // )
-      const result = await client.listBuckets()
+      const result = await client.list()
       console.log(result)
     } catch (e) {
       console.log(e)
