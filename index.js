@@ -10,6 +10,8 @@ try {
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);
+
+  
   // const accessKeyId = core.getInput('access-key-id')
   // const accessKeySecret = core.getInput('access-key-secret')
   // const stsToken = core.getInput('sts-token')
