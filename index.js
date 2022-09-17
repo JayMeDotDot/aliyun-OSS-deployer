@@ -31,9 +31,10 @@ try {
 
   async function put() {
     try {
-      const result = await client.put(
-        'dist/.',
-      )
+      // const result = await client.put(
+      //   'dist/.',
+      // )
+      const result = await client.listBuckets()
       console.log(result)
     } catch (e) {
       console.log(e)
