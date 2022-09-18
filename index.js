@@ -32,6 +32,7 @@ try {
 
   async function collectFilePath(dir, arr=[]) {
     const files = await fs.readdir(dir)
+    console.log('files')
     console.log(files)
     for (const file of files) {
       const currentPath = path.join(dir, file)
@@ -50,7 +51,8 @@ try {
     }
   }
 
-  console.log('__dirname',__dirname)
+  console.log('__dirname')
+  console.log(__dirname)
   const basePath = path.normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)

@@ -49,6 +49,7 @@ try {
 
   async function collectFilePath(dir, arr=[]) {
     const files = await node_fs_promises__WEBPACK_IMPORTED_MODULE_3___default().readdir(dir)
+    console.log('files')
     console.log(files)
     for (const file of files) {
       const currentPath = path__WEBPACK_IMPORTED_MODULE_2___default().join(dir, file)
@@ -67,7 +68,8 @@ try {
     }
   }
 
-  console.log('__dirname',__dirname)
+  console.log('__dirname')
+  console.log(__dirname)
   const basePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)
