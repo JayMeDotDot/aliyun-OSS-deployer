@@ -52,12 +52,15 @@ try {
   }
 
   const __dirname = process.env['GITHUB_WORKSPACE']
-  const basePath = path.normalize(__dirname)
+  const basePath = path.normalize(path.join(__dirname, 'dist'))
+  console.log(__dirname)
+  console.log(basePath)
 
   const needToUploadPath = await collectFilePath(basePath)
+  // /home/runner/work/only-for-test/only-for-test/.git/FETCH_HEAD
 
   for (const localPath of needToUploadPath) {
-    const remotePath = path.normalize(localPath.replace('dist', '.'))
+    const remotePath = path.normalize(localPath.replace(basePath, ''))
     console.log(remotePath)
     console.log(localPath)
     put(remotePath, localPath)
