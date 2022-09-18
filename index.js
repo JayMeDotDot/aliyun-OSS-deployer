@@ -34,12 +34,12 @@ try {
     const files = await fs.readdir(dir)
     console.log('files')
     console.log(files)
-    for (const file of files) {
-      const currentPath = path.join(dir, file)
-      const stat = await fs.stat(currentPath)
-      if (stat.isFile()) arr.push(currentPath)
-      if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
-    }
+    // for (const file of files) {
+    //   const currentPath = path.join(dir, file)
+    //   const stat = await fs.stat(currentPath)
+    //   if (stat.isFile()) arr.push(currentPath)
+    //   if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
+    // }
     return arr
   }
 
@@ -50,6 +50,8 @@ try {
       console.warn(e)
     }
   }
+
+  const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
   console.log('__dirname')
   console.log(__dirname)
