@@ -33,4 +33,4 @@ inputs:
     default: '60000'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'index.js'
