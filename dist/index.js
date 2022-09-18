@@ -21,17 +21,17 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 try {
-  const accessKeyId = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('access-key-id')
-  const accessKeySecret = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('access-key-secret')
-  const stsToken = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('sts-token')
-  const bucket = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('bucket')
-  const endpoint = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('endpoint')
-  const region = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('region')
-  const internal = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('internal')
-  const cname = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('cname')
-  const isRequestPay = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('is-request-pay')
-  const secure = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('secure')
-  const timeout = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('timeout')
+  const accessKeyId = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('access-key-id')
+  const accessKeySecret = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('access-key-secret')
+  const stsToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('sts-token')
+  const bucket = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('bucket')
+  const endpoint = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('endpoint')
+  const region = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('region')
+  const internal = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getBooleanInput('internal')
+  const cname = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getBooleanInput('cname')
+  const isRequestPay = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getBooleanInput('is-request-pay')
+  const secure = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getBooleanInput('secure')
+  const timeout = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('timeout')
 
   const client = new (ali_oss__WEBPACK_IMPORTED_MODULE_1___default())({
     accessKeyId,
@@ -62,7 +62,7 @@ try {
     try {
       await client.put( remotePath, localPath )
     } catch (e) {
-      throw new Error(e)
+      console.warn(e)
     }
   }
 
@@ -74,7 +74,7 @@ try {
   }
 
 } catch (err) {
-  _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(err.message)
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(err.message)
 }
 
 __webpack_handle_async_dependencies__();
