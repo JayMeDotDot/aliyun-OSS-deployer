@@ -49,13 +49,16 @@ try {
     }
   }
 
-  const basePath = path.normalize('dist')
+  console.log(__dirname)
+  const basePath = path.normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)
 
   for (const localPath of needToUploadPath) {
     const remotePath = path.normalize(localPath.replace('dist', '.'))
-    put(remotePath, localPath)
+    console.log(remotePath)
+    console.log(localPath)
+    // put(remotePath, localPath)
   }
 
 } catch (err) {

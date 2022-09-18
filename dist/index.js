@@ -66,13 +66,16 @@ try {
     }
   }
 
-  const basePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize('dist')
+  console.log(__dirname)
+  const basePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)
 
   for (const localPath of needToUploadPath) {
     const remotePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize(localPath.replace('dist', '.'))
-    put(remotePath, localPath)
+    console.log(remotePath)
+    console.log(localPath)
+    // put(remotePath, localPath)
   }
 
 } catch (err) {
