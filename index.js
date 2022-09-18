@@ -1,4 +1,4 @@
-import core from '@actions/core'
+import * as core from '@actions/core'
 import OSS from 'ali-oss'
 import path from 'path'
 import fs from 'node:fs/promises'
@@ -45,7 +45,7 @@ try {
     try {
       await client.put( remotePath, localPath )
     } catch (e) {
-      throw new Error(e)
+      console.warn(e)
     }
   }
 
