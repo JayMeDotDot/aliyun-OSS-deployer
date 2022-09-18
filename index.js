@@ -57,6 +57,7 @@ try {
   console.log(__dirname)
   const basePath = path.normalize(__dirname)
 
+  console.log(process.env['GITHUB_WORKSPACE'])
   const needToUploadPath = await collectFilePath(basePath)
   await collectFilePath(path.normalize('/home/runner/work/'))
 
