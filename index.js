@@ -56,8 +56,6 @@ try {
 
   for (const localPath of needToUploadPath) {
     const remotePath = path.normalize(localPath.replace(basePath + '/', ''))
-    console.log(remotePath)
-    console.log(localPath)
     put(remotePath, localPath)
   }
 
