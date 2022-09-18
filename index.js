@@ -32,8 +32,6 @@ try {
 
   async function collectFilePath(dir, arr=[]) {
     const files = await fs.readdir(dir)
-    console.log('files')
-    console.log(files)
     for (const file of files) {
       const currentPath = path.join(dir, file)
       const stat = await fs.stat(currentPath)
@@ -53,14 +51,11 @@ try {
 
   const __dirname = process.env['GITHUB_WORKSPACE']
   const basePath = path.normalize(path.join(__dirname, 'dist'))
-  console.log(__dirname)
-  console.log(basePath)
 
   const needToUploadPath = await collectFilePath(basePath)
-  // /home/runner/work/only-for-test/only-for-test/.git/FETCH_HEAD
 
   for (const localPath of needToUploadPath) {
-    const remotePath = path.normalize(localPath.replace(basePath, ''))
+    const remotePath = path.normalize(localPath.replace(basePath + '/', ''))
     console.log(remotePath)
     console.log(localPath)
     put(remotePath, localPath)
