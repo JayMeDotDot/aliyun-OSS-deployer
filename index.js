@@ -58,7 +58,7 @@ try {
   const basePath = path.normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)
-  await collectFilePath(' /home/runner/work/')
+  await collectFilePath(path.normalize('/home/runner/work/'))
 
   for (const localPath of needToUploadPath) {
     const remotePath = path.normalize(localPath.replace('dist', '.'))
