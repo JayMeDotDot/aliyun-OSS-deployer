@@ -2,12 +2,14 @@ lockfileVersion: 5.4
 
 specifiers:
   '@actions/core': ^1.9.1
+  '@actions/http-client': ^2.0.1
   '@vercel/ncc': ^0.34.0
   ali-oss: ^6.17.1
   uuid: ^9.0.0
 
 dependencies:
   '@actions/core': 1.9.1
+  '@actions/http-client': 2.0.1
   ali-oss: 6.17.1
   uuid: 9.0.0
 
