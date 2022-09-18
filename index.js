@@ -49,6 +49,8 @@ try {
     }
   }
 
+  const basePath = path.normalize('dist')
+
   const needToUploadPath = await collectFilePath(basePath)
 
   for (const localPath of needToUploadPath) {

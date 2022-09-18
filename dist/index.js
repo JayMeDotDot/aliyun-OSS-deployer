@@ -66,6 +66,8 @@ try {
     }
   }
 
+  const basePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize('dist')
+
   const needToUploadPath = await collectFilePath(basePath)
 
   for (const localPath of needToUploadPath) {
