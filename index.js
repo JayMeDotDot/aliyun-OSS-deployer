@@ -32,6 +32,7 @@ try {
 
   async function collectFilePath(dir, arr=[]) {
     const files = await fs.readdir(dir)
+    console.log(files)
     for (const file of files) {
       const currentPath = path.join(dir, file)
       const stat = await fs.stat(currentPath)
@@ -49,15 +50,15 @@ try {
     }
   }
 
-  console.log(__dirname)
+  console.log('__dirname',__dirname)
   const basePath = path.normalize(__dirname)
 
   const needToUploadPath = await collectFilePath(basePath)
 
   for (const localPath of needToUploadPath) {
     const remotePath = path.normalize(localPath.replace('dist', '.'))
-    console.log(remotePath)
-    console.log(localPath)
+    // console.log(remotePath)
+    // console.log(localPath)
     // put(remotePath, localPath)
   }
 
