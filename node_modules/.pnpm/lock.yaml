@@ -5,12 +5,14 @@ specifiers:
   '@actions/http-client': ^2.0.1
   '@vercel/ncc': ^0.34.0
   ali-oss: ^6.17.1
+  tunnel: ^0.0.6
   uuid: ^9.0.0
 
 dependencies:
   '@actions/core': 1.9.1
   '@actions/http-client': 2.0.1
   ali-oss: 6.17.1
+  tunnel: 0.0.6
   uuid: 9.0.0
 
 devDependencies:
