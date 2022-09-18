@@ -34,12 +34,12 @@ try {
     const files = await fs.readdir(dir)
     console.log('files')
     console.log(files)
-    // for (const file of files) {
-    //   const currentPath = path.join(dir, file)
-    //   const stat = await fs.stat(currentPath)
-    //   if (stat.isFile()) arr.push(currentPath)
-    //   if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
-    // }
+    for (const file of files) {
+      const currentPath = path.join(dir, file)
+      const stat = await fs.stat(currentPath)
+      if (stat.isFile()) arr.push(currentPath)
+      if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
+    }
     return arr
   }
 
@@ -51,21 +51,16 @@ try {
     }
   }
 
-  const __dirname = path.dirname(new URL(import.meta.url).pathname)
-
-  console.log('__dirname')
-  console.log(__dirname)
+  const __dirname = process.env['GITHUB_WORKSPACE']
   const basePath = path.normalize(__dirname)
 
-  console.log(process.env['GITHUB_WORKSPACE'])
   const needToUploadPath = await collectFilePath(basePath)
-  await collectFilePath(path.normalize('/home/runner/work/'))
 
   for (const localPath of needToUploadPath) {
     const remotePath = path.normalize(localPath.replace('dist', '.'))
-    // console.log(remotePath)
-    // console.log(localPath)
-    // put(remotePath, localPath)
+    console.log(remotePath)
+    console.log(localPath)
+    put(remotePath, localPath)
   }
 
 } catch (err) {
