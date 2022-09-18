@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "utils for deploying aliyun oss from GitHub Actions",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
     "test": "echo \"Error: no test specified\" && exit 1"
