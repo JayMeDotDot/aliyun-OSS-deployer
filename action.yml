@@ -1,5 +1,8 @@
 name: 'delpoy aliyun oss'
 description: 'delpoy aliyun oss'
+branding:
+  icon: archive
+  color: orange
 inputs:
   access-key-id:
     description: '通过阿里云控制台创建的AccessKey ID'

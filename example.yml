@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run deploy
+        uses: JayMeDotDot/aliyun-OSS-deployer@v1.0.0
+        with:
+          access-key-id: ${{ secrets.ALICLOUDOSS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALICLOUDOSS_KEY_SECRET }}
+          region: 'your-region'
+          bucket: 'your-bucket'

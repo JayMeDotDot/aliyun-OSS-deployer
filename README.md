@@ -25,3 +25,22 @@ OSS(option) 中的各项配置说明（[下表如有问题参考官方文档](ht
 | isRequestPay | Boolean | Bucket是否开启请求者付费模式，默认值为false。更多信息，请参见请求者付费模式。 |
 | secure | Boolean | 设置secure为true，则使用HTTPS；设置secure为false，则使用HTTP。更多信息，请参见常见问题。 |
 | timeout | String \| Number | 超时时间，默认值为60000，单位为毫秒。 |
+
+## [配置样式](example.yml)
+```yml
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run deploy
+        uses: JayMeDotDot/aliyun-OSS-deployer@v1.0.0
+        with:
+          access-key-id: ${{ secrets.ALICLOUDOSS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALICLOUDOSS_KEY_SECRET }}
+          region: 'your-region'
+          bucket: 'your-bucket'
+```
