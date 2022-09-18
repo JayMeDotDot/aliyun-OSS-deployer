@@ -1,6 +1,87 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 6238:
+/***/ ((module, __webpack_exports__, __nccwpck_require__) => {
+
+"use strict";
+__nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__) => {
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(822);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var ali_oss__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(6499);
+/* harmony import */ var ali_oss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(ali_oss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(1017);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var node_fs_promises__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(3977);
+/* harmony import */ var node_fs_promises__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(node_fs_promises__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+try {
+  const accessKeyId = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('access-key-id')
+  const accessKeySecret = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('access-key-secret')
+  const stsToken = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('sts-token')
+  const bucket = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('bucket')
+  const endpoint = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('endpoint')
+  const region = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('region')
+  const internal = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('internal')
+  const cname = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('cname')
+  const isRequestPay = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('is-request-pay')
+  const secure = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getBooleanInput('secure')
+  const timeout = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('timeout')
+
+  const client = new (ali_oss__WEBPACK_IMPORTED_MODULE_1___default())({
+    accessKeyId,
+    accessKeySecret,
+    stsToken,
+    bucket,
+    endpoint,
+    region,
+    internal,
+    cname,
+    isRequestPay,
+    secure,
+    timeout,
+  })
+
+  async function collectFilePath(dir, arr=[]) {
+    const files = await node_fs_promises__WEBPACK_IMPORTED_MODULE_3___default().readdir(dir)
+    for (const file of files) {
+      const currentPath = path__WEBPACK_IMPORTED_MODULE_2___default().join(dir, file)
+      const stat = await node_fs_promises__WEBPACK_IMPORTED_MODULE_3___default().stat(currentPath)
+      if (stat.isFile()) arr.push(currentPath)
+      if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
+    }
+    return arr
+  }
+
+  async function put(remotePath, localPath) {
+    try {
+      const result = await client.put( remotePath, localPath )
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  const needToUploadPath = await collectFilePath(basePath)
+
+  for (const localPath of needToUploadPath) {
+    const remotePath = path__WEBPACK_IMPORTED_MODULE_2___default().normalize(localPath.replace('dist', '.'))
+    put(remotePath, localPath)
+  }
+
+} catch (err) {
+  _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(err.message)
+}
+
+__webpack_handle_async_dependencies__();
+}, 1);
+
+/***/ }),
+
 /***/ 9636:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -81569,6 +81650,14 @@ module.exports = require("net");
 
 /***/ }),
 
+/***/ 3977:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:fs/promises");
+
+/***/ }),
+
 /***/ 2037:
 /***/ ((module) => {
 
@@ -81813,6 +81902,120 @@ module.exports = JSON.parse('{"name":"urllib","version":"2.38.1","description":"
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/async module */
+/******/ 	(() => {
+/******/ 		var webpackThen = typeof Symbol === "function" ? Symbol("webpack then") : "__webpack_then__";
+/******/ 		var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
+/******/ 		var completeQueue = (queue) => {
+/******/ 			if(queue) {
+/******/ 				queue.forEach((fn) => (fn.r--));
+/******/ 				queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
+/******/ 			}
+/******/ 		}
+/******/ 		var completeFunction = (fn) => (!--fn.r && fn());
+/******/ 		var queueFunction = (queue, fn) => (queue ? queue.push(fn) : completeFunction(fn));
+/******/ 		var wrapDeps = (deps) => (deps.map((dep) => {
+/******/ 			if(dep !== null && typeof dep === "object") {
+/******/ 				if(dep[webpackThen]) return dep;
+/******/ 				if(dep.then) {
+/******/ 					var queue = [];
+/******/ 					dep.then((r) => {
+/******/ 						obj[webpackExports] = r;
+/******/ 						completeQueue(queue);
+/******/ 						queue = 0;
+/******/ 					});
+/******/ 					var obj = {};
+/******/ 												obj[webpackThen] = (fn, reject) => (queueFunction(queue, fn), dep['catch'](reject));
+/******/ 					return obj;
+/******/ 				}
+/******/ 			}
+/******/ 			var ret = {};
+/******/ 								ret[webpackThen] = (fn) => (completeFunction(fn));
+/******/ 								ret[webpackExports] = dep;
+/******/ 								return ret;
+/******/ 		}));
+/******/ 		__nccwpck_require__.a = (module, body, hasAwait) => {
+/******/ 			var queue = hasAwait && [];
+/******/ 			var exports = module.exports;
+/******/ 			var currentDeps;
+/******/ 			var outerResolve;
+/******/ 			var reject;
+/******/ 			var isEvaluating = true;
+/******/ 			var nested = false;
+/******/ 			var whenAll = (deps, onResolve, onReject) => {
+/******/ 				if (nested) return;
+/******/ 				nested = true;
+/******/ 				onResolve.r += deps.length;
+/******/ 				deps.map((dep, i) => (dep[webpackThen](onResolve, onReject)));
+/******/ 				nested = false;
+/******/ 			};
+/******/ 			var promise = new Promise((resolve, rej) => {
+/******/ 				reject = rej;
+/******/ 				outerResolve = () => (resolve(exports), completeQueue(queue), queue = 0);
+/******/ 			});
+/******/ 			promise[webpackExports] = exports;
+/******/ 			promise[webpackThen] = (fn, rejectFn) => {
+/******/ 				if (isEvaluating) { return completeFunction(fn); }
+/******/ 				if (currentDeps) whenAll(currentDeps, fn, rejectFn);
+/******/ 				queueFunction(queue, fn);
+/******/ 				promise['catch'](rejectFn);
+/******/ 			};
+/******/ 			module.exports = promise;
+/******/ 			body((deps) => {
+/******/ 				if(!deps) return outerResolve();
+/******/ 				currentDeps = wrapDeps(deps);
+/******/ 				var fn, result;
+/******/ 				var promise = new Promise((resolve, reject) => {
+/******/ 					fn = () => (resolve(result = currentDeps.map((d) => (d[webpackExports]))));
+/******/ 					fn.r = 0;
+/******/ 					whenAll(currentDeps, fn, reject);
+/******/ 				});
+/******/ 				return fn.r ? promise : result;
+/******/ 			}).then(outerResolve, reject);
+/******/ 			isEvaluating = false;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nccwpck_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__nccwpck_require__.nmd = (module) => {
@@ -81827,60 +82030,12 @@ module.exports = JSON.parse('{"name":"urllib","version":"2.38.1","description":"
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-const core = __nccwpck_require__(822)
-const OSS = __nccwpck_require__(6499)
-const path = __nccwpck_require__(1017)
-
-try {
-  const accessKeyId = core.getInput('access-key-id')
-  const accessKeySecret = core.getInput('access-key-secret')
-  const stsToken = core.getInput('sts-token')
-  const bucket = core.getInput('bucket')
-  const endpoint = core.getInput('endpoint')
-  const region = core.getInput('region')
-  const internal = core.getBooleanInput('internal')
-  const cname = core.getBooleanInput('cname')
-  const isRequestPay = core.getBooleanInput('is-request-pay')
-  const secure = core.getBooleanInput('secure')
-  const timeout = core.getInput('timeout')
-
-  const client = new OSS({
-    accessKeyId,
-    accessKeySecret,
-    stsToken,
-    bucket,
-    endpoint,
-    region,
-    internal,
-    cname,
-    isRequestPay,
-    secure,
-    timeout,
-  })
-
-  async function put() {
-    try {
-      // const result = await client.put(
-      //   'dist/.',
-      // )
-      const result = await client.list()
-      console.log(result)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  put()
-
-} catch (err) {
-  core.setFailed(err.message)
-}
-
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module used 'module' so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6238);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;

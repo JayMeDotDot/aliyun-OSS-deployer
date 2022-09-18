@@ -2,11 +2,15 @@ lockfileVersion: 5.4
 
 specifiers:
   '@actions/core': ^1.9.1
+  '@vercel/ncc': ^0.34.0
   ali-oss: ^6.17.1
 
 dependencies:
   '@actions/core': 1.9.1
   ali-oss: 6.17.1
+
+devDependencies:
+  '@vercel/ncc': 0.34.0
 
 packages:
 
@@ -27,6 +31,11 @@ packages:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
     dev: false
+
+  /@vercel/ncc/0.34.0:
+    resolution: {integrity: sha512-G9h5ZLBJ/V57Ou9vz5hI8pda/YQX5HQszCs3AmIus3XzsmRn/0Ptic5otD3xVST8QLKk7AMk7AqpsyQGN7MZ9A==}
+    hasBin: true
+    dev: true
 
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}

@@ -1,6 +1,7 @@
-const core = require('@actions/core')
-const OSS = require('ali-oss')
-const path = require('path')
+import core from '@actions/core'
+import OSS from 'ali-oss'
+import path from 'path'
+import fs from 'node:fs/promises'
 
 try {
   const accessKeyId = core.getInput('access-key-id')
@@ -29,19 +30,31 @@ try {
     timeout,
   })
 
-  async function put() {
+  async function collectFilePath(dir, arr=[]) {
+    const files = await fs.readdir(dir)
+    for (const file of files) {
+      const currentPath = path.join(dir, file)
+      const stat = await fs.stat(currentPath)
+      if (stat.isFile()) arr.push(currentPath)
+      if (stat.isDirectory()) arr.push(...await collectFilePath(currentPath))
+    }
+    return arr
+  }
+
+  async function put(remotePath, localPath) {
     try {
-      // const result = await client.put(
-      //   'dist/.',
-      // )
-      const result = await client.list()
-      console.log(result)
+      await client.put( remotePath, localPath )
     } catch (e) {
-      console.log(e)
+      throw new Error(e)
     }
   }
 
-  put()
+  const needToUploadPath = await collectFilePath(basePath)
+
+  for (const localPath of needToUploadPath) {
+    const remotePath = path.normalize(localPath.replace('dist', '.'))
+    put(remotePath, localPath)
+  }
 
 } catch (err) {
   core.setFailed(err.message)
